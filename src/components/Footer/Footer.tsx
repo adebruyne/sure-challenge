@@ -23,7 +23,7 @@ function Footer() {
       sx={{
         background: 'rgba(170,186,205,.2)',
         padding: '16px',
-        maxHeight: `${FOOTER_HEIGHT}px`,
+        minHeight: `${FOOTER_HEIGHT}px`,
 
       }}
     >
