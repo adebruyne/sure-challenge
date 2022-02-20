@@ -1,5 +1,6 @@
 import InstructionsBar from './InstructionsBar';
 import { renderWithProviders } from '../../utils/test';
+import { shallow } from 'enzyme';
 
 describe('InstructionsBar', () => {
   const defaultProps = {
@@ -11,6 +12,10 @@ describe('InstructionsBar', () => {
     expect(getByText('View challenges')).toBeInTheDocument();
   });
 
-  // TODO: Challenge 3
-  it('should call the onClick prop when the button is clicked', () => {});
+  it('should call the onClick prop when the button is clicked', () => {
+    const wrapper = shallow(<InstructionsBar {...defaultProps} />);
+    wrapper.find('.view_challenges_button').simulate('click')
+    expect(defaultProps.onClick).toHaveBeenCalledTimes(1);
+
+  });
 });
