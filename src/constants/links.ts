@@ -1,5 +1,10 @@
 const links = [
   {
+    text: 'Home',
+    href: '/',
+    'data-testid': 'home_link',
+  },
+  {
     text: 'Policyholders',
     href: '/policyholders',
     'data-testid': 'policyholders_link',
