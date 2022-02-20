@@ -65,7 +65,6 @@ function NavBar({ links }: TNavBar) {
           location.pathname,
           href
         )
-        console.log(isPathActive)
         return (
           <NavLink
             key={href}
