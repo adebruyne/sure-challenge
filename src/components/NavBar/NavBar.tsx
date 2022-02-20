@@ -60,16 +60,15 @@ function NavBar({ links }: TNavBar) {
         <img src="/surelogo.svg" alt="logo"></img>
       </NavLink>
       {links.map(({ text, href, 'data-testid': dataTestId }) => (
-        <>
-          <NavLink
-            key={href}
-            to={href}
-            className={({ isActive }) => isActive ? "navbar__link--active" : "navbar__link"}
-            data-testid={dataTestId}
-          >
-            {text}
-          </NavLink>
-        </>
+        <NavLink
+          key={href}
+          to={href}
+          className={({ isActive }) => isActive ? "navbar__link--active" : "navbar__link"}
+          data-testid={dataTestId}
+        >
+          {text}
+        </NavLink>
+
       ))
       }
     </NavBarContainer >
