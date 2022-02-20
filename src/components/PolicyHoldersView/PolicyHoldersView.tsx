@@ -1,31 +1,64 @@
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { IPolicyHolder } from '../../databaseTypes';
 import InfoTable from '../InfoTable';
 
 
 
 
 function PolicyHoldersView() {
-    const [policyHolders, setPolicyHolders] = useState([] as any);
+    const [policyHolders, setPolicyHolders] = useState([] as IPolicyHolder[]);
     const policyHoldersURL = `https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders`
-    const getPolicyHolders = () => {
-        axios.get(policyHoldersURL).then((response) => {
-            const holders = response.data.policyHolders
-            setPolicyHolders(holders)
+    const getPolicyHolders = async () => {
+        const response = await axios.get(policyHoldersURL).then((response) => {
+            return response.data.policyHolders
         }).catch((error) => console.error(`Error: ${error}`))
+        if (response) {
+            return setPolicyHolders(response)
+        }
     }
 
     useEffect(() => {
         getPolicyHolders()
-    }, [] as any)
+    }, [])
+
+    const handleAddAnotherPolicy = async () => {
+        const payload = {
+            "name": 'Yul B.Allwright',
+            "age": 89,
+            "address": {
+                "line1": '5555 No Friggin Way',
+                "line2": 'APT H',
+                "city": 'Silver City',
+                "state": 'New Mexico',
+                "postalCode": '88036',
+            },
+            "phoneNumber": '123-444-5678',
+        }
+        const postUrl = 'https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders'
+        const response = await axios
+            .post(postUrl, payload)
+            .then((response) => {
+                return response.data.policyHolders;
+            })
+            .catch((error) => {
+                console.error(`Error: ${error}`)
+            });
+        if (response) {
+            return setPolicyHolders(response);
+        }
+    };
+
+
+
     return (
         <>
             <Typography variant="h2" textAlign="center" marginBottom="24px">
                 Policy Holders
             </Typography>
             <Box sx={{ textAlign: 'center' }}>
-                {policyHolders.map((policyHolder: any, index: number) => {
+                {policyHolders.map((policyHolder: IPolicyHolder, index: number) => {
                     const rows = [{
                         key: 'Name',
                         value: policyHolder.name
@@ -49,6 +82,22 @@ function PolicyHoldersView() {
                     ]
                     return (<InfoTable key={index} header={`Policy Holder: ${index + 1}`} rows={rows} />)
                 })}
+            </Box>
+            <Box
+                sx={{
+                    paddingTop: '16px',
+                    textAlign: 'center',
+                }}
+            >
+                <Button
+                    className={'view_challenges_button'}
+                    onClick={handleAddAnotherPolicy}
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                >
+                    Add a policyHolder
+                </Button>
             </Box>
         </>
     );
