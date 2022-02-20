@@ -13,6 +13,8 @@ const listItemButtonStyle = {
   textAlign: { xs: 'center', sm: 'unset' },
 } as const;
 
+export const FOOTER_HEIGHT = 170 as number
+
 function Footer() {
   return (
     <Box
@@ -21,6 +23,8 @@ function Footer() {
       sx={{
         background: 'rgba(170,186,205,.2)',
         padding: '16px',
+        maxHeight: `${FOOTER_HEIGHT}px`,
+
       }}
     >
       <Grid container justifyContent="space-around">
