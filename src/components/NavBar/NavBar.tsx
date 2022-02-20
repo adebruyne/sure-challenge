@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { matchPath, NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components/macro'
 
 const NavBarContainer = styled(Box)`
@@ -49,6 +49,7 @@ type TNavBar = {
 };
 
 function NavBar({ links }: TNavBar) {
+  const location = useLocation();
   return (
     <NavBarContainer
       component="aside"
@@ -59,17 +60,26 @@ function NavBar({ links }: TNavBar) {
       >
         <img src="/surelogo.svg" alt="logo"></img>
       </NavLink>
-      {links.map(({ text, href, 'data-testid': dataTestId }) => (
-        <NavLink
-          key={href}
-          to={href}
-          className={({ isActive }) => isActive ? "navbar__link--active" : "navbar__link"}
-          data-testid={dataTestId}
-        >
-          {text}
-        </NavLink>
+      {links.map(({ text, href, 'data-testid': dataTestId }) => {
+        const isPathActive = !!matchPath(
+          location.pathname,
+          href
+        )
+        console.log(isPathActive)
+        return (
+          <NavLink
+            key={href}
+            to={href}
+            className={({ isActive }) => isActive ? "navbar__link--active" : "navbar__link"}
+            data-testid={dataTestId}
+            aria-current={isPathActive ? 'page' : undefined}
+          >
+            {text}
+          </NavLink>
 
-      ))
+        )
+
+      })
       }
     </NavBarContainer >
   );
