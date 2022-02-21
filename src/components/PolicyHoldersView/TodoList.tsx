@@ -58,10 +58,10 @@ const listOfTodos = [
         title: '13. Add more jest tests - test happy paths, edge cases. There were not any inputs from a form on this, but if we did, having some sort of validation schema would be nice.'
     },
     {
-        title: '14. More functional testing: check performance on different browsers, slower browsers, different machines, different media views (mobile vs tablet), screen readers. '
+        title: '14. More functional testing: check performance on different browsers, slower browsers, different machines, different media views (mobile vs tablet), screen readers.'
     },
     {
-        title: '15. Thorough code review performed by both myself and 2 peers. Is this the expected file structure? Are there areas where code could perform better with a refactor? Remove leftover comments - comments can lie, the code does not. '
+        title: '15. Thorough code review performed by both myself and 2 peers. Is this the expected file structure? Are there areas where code could perform better with a refactor? Remove leftover comments - comments can lie, the code does not.'
     },
 
 ]
