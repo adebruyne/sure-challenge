@@ -1,10 +1,17 @@
 import { Typography, Box, Button } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { IPolicyHolder } from '../../databaseTypes';
 import InfoTable from '../InfoTable';
 import Modal from '../Modal';
 import TodoList from './TodoList';
+
+const ButtonContainer = styled(Box)`
+ padding-top: 16px;
+ text-align: center;
+
+`
 
 const policyHoldersGetURL = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
 const policyHoldersPostUrl = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
@@ -82,14 +89,10 @@ function PolicyHoldersView() {
                     return (<InfoTable key={index} header={`Policy Holder: ${index + 1}`} rows={rows} />)
                 })}
             </Box>
-            <Box
-                sx={{
-                    paddingTop: '16px',
-                    textAlign: 'center',
-                }}
+            <ButtonContainer
             >
                 <Button
-                    className={'view_challenges_button'}
+                    className={'add_policyHolder_button'}
                     onClick={handleAddAnotherPolicy}
                     variant="contained"
                     color="success"
@@ -97,12 +100,8 @@ function PolicyHoldersView() {
                 >
                     Add a policyHolder
                 </Button>
-            </Box>
-            <Box
-                sx={{
-                    paddingTop: '16px',
-                    textAlign: 'center',
-                }}>
+            </ButtonContainer>
+            <ButtonContainer>
                 <Button
                     className={'todo_list_button'}
                     onClick={() => setIsModalOpen(true)}
@@ -110,7 +109,7 @@ function PolicyHoldersView() {
                     color="warning"
                     size="large"
                 >
-                    List of Todo's
+                    List of Todos
                 </Button>
                 <Modal
                     isOpen={isModalOpen}
@@ -119,7 +118,7 @@ function PolicyHoldersView() {
                 >
                     <TodoList />
                 </Modal>
-            </Box>
+            </ButtonContainer>
         </>
     );
 }
