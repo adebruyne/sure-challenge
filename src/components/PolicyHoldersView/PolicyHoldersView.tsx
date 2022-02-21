@@ -10,8 +10,15 @@ import TodoList from './TodoList';
 const ButtonContainer = styled(Box)`
  padding-top: 16px;
  text-align: center;
-
 `
+const HeaderTitle = styled(Typography)`
+text-align: center;
+margin-bottom: 24px;
+`
+const PolicyHoldersContainer = styled(Box)`
+text-align: center;
+`
+
 
 const policyHoldersGetURL = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
 const policyHoldersPostUrl = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
@@ -60,10 +67,10 @@ function PolicyHoldersView() {
     };
     return (
         <>
-            <Typography variant="h2" textAlign="center" marginBottom="24px">
+            <HeaderTitle variant='h2'>
                 Policy Holders
-            </Typography>
-            <Box sx={{ textAlign: 'center' }}>
+            </HeaderTitle>
+            <PolicyHoldersContainer>
                 {policyHolders.map((policyHolder: IPolicyHolder, index: number) => {
                     const rows = [{
                         key: 'Name',
@@ -88,7 +95,7 @@ function PolicyHoldersView() {
                     ]
                     return (<InfoTable key={index} header={`Policy Holder: ${index + 1}`} rows={rows} />)
                 })}
-            </Box>
+            </PolicyHoldersContainer>
             <ButtonContainer
             >
                 <Button
