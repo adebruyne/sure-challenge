@@ -2,19 +2,18 @@ import { PropsWithChildren } from 'react';
 import Footer from '../Footer';
 import NavBar from '../NavBar';
 import { Box } from '@mui/material';
+import { matchPath, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+
 import links from '../../constants/links';
 import InstructionsBar from '../InstructionsBar';
-import styled from 'styled-components';
 import { FOOTER_HEIGHT } from '../Footer/Footer';
-
 
 
 const MainContent = styled(Box)`
   display: flex;
   overflow: scroll;
   min-height: calc(100vh - ${FOOTER_HEIGHT}px - 30px);
-
-
 `
 
 type TLayout = PropsWithChildren<{
@@ -22,6 +21,11 @@ type TLayout = PropsWithChildren<{
 }>;
 
 function Layout({ children, onFooterClick }: TLayout) {
+  const location = useLocation();
+  const isPolicyHolderPath = !!matchPath(
+    location.pathname,
+    '/policyholders'
+  )
   return (
     <>
       <MainContent
@@ -35,7 +39,7 @@ function Layout({ children, onFooterClick }: TLayout) {
           }}
         >
           {children}
-          <InstructionsBar onClick={onFooterClick} />
+          {isPolicyHolderPath ? <></> : <InstructionsBar onClick={onFooterClick} />}
         </Box>
       </MainContent>
       <Footer />
