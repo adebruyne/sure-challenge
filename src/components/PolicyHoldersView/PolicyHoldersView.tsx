@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { IPolicyHolder } from '../../databaseTypes';
 import InfoTable from '../InfoTable';
+import Modal from '../Modal';
+import TodoList from './TodoList';
 
 const policyHoldersGetURL = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
 const policyHoldersPostUrl = "https://fe-interview-technical-challenge-api-git-main-sure.vercel.app/api/policyholders";
@@ -21,6 +23,7 @@ const payload = {
 
 function PolicyHoldersView() {
     const [policyHolders, setPolicyHolders] = useState([] as IPolicyHolder[]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const getPolicyHolders = async () => {
         const response = await axios.get(policyHoldersGetURL).then((response) => {
@@ -94,6 +97,28 @@ function PolicyHoldersView() {
                 >
                     Add a policyHolder
                 </Button>
+            </Box>
+            <Box
+                sx={{
+                    paddingTop: '16px',
+                    textAlign: 'center',
+                }}>
+                <Button
+                    className={'todo_list_button'}
+                    onClick={() => setIsModalOpen(true)}
+                    variant="contained"
+                    color="warning"
+                    size="large"
+                >
+                    List of Todo's
+                </Button>
+                <Modal
+                    isOpen={isModalOpen}
+                    handleClose={() => setIsModalOpen(false)}
+                    title="Remaing Work"
+                >
+                    <TodoList />
+                </Modal>
             </Box>
         </>
     );
