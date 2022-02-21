@@ -1,5 +1,9 @@
 # Sure Frontend Technical Challenge
 
+## Demo
+ [Link to demo of development branch](https://surefechallenge.surge.sh/)
+
+
 ## Goal
 The FE technical challenge consisted of 9 tasks to attempt to complete within a pre-built app given a 3 day window. The goal was add the project to a new repo, to attempt to complete those tasks and file a Pull Request capturing the updates you make to complete the assignment.
 
@@ -61,4 +65,11 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
 
